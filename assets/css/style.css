@@ -27,3 +27,6 @@ body {
     border: solid white;
 }
 
+li:hover {
+    background-color: lightblue;
+}

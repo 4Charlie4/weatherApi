@@ -19,7 +19,7 @@ const future = document.querySelectorAll(".future");
 const fiveDate = document.querySelectorAll(".dateF");
 console.log(future);
 
-var grabCityName = function (event) {
+var formatCityName = function (event) {
   event.preventDefault();
   if (userInput.value !== "") {
     city = userInput.value.split(" ").join("");
@@ -70,7 +70,7 @@ var displayCurrent = function (current) {
   let currentWeather = current.current;
   let currentDate = new Date(currentWeather.dt * 1000).toLocaleDateString();
 
-  todayName.innerHTML = `${userInput.value}:`.toUpperCase() + ` ${currentDate}`;
+  todayName.innerHTML = `${city}:`.toUpperCase() + ` ${currentDate}`;
   todayTemp.innerHTML = ` ${currentWeather.temp}`;
   todayHumid.innerHTML = ` ${currentWeather.humidity} %`;
   todayWinds.innerHTML = ` ${currentWeather.wind_speed} MPH`;
@@ -80,7 +80,6 @@ var displayCurrent = function (current) {
   let currentIcon = `${currentWeather.weather[0].icon}`;
   let iconUrl = `http://openweathermap.org/img/wn/${currentIcon}@2x.png`;
   todayIcon.innerHTML = "<img src=" + iconUrl + ">";
-  console.log(todayIcon);
 };
 
 //displays five day cast
@@ -107,15 +106,41 @@ var displayFuture = function (five) {
 };
 
 var saveCityName = function (city) {
+  city = city.toUpperCase();
+  if (cityArry == null) {
+    cityArry = [];
+  }
+
+  appendToList(city);
   cityArry.push(city);
   localStorage.setItem("City", JSON.stringify(cityArry));
   console.log(cityArry);
   userInput.value = "";
 };
 
-var loadCityName = function () {};
+var appendToList = function (city, listItem) {
+  var listItem = document.createElement("li");
+  listItem.setAttribute("class", "list-group-item");
+  listItem.setAttribute("data-value", city);
+  listItem.innerHTML = city;
+  document.querySelector(".list-group").appendChild(listItem);
+};
+
+var loadCityName = function (listCity) {
+  document.querySelector(".list-group").innerHTML = "";
+};
+
+var loadCityClick = function (event) {
+  let savedList = event.target.innerHTML;
+  if (event.target.matches("li")) {
+    city = savedList;
+    console.log(city);
+    console.log(event.target);
+    convertInputApi(city);
+  }
+};
 
 //saves data pulled from API
 
-subBtn.addEventListener("click", grabCityName);
-window.addEventListener();
+subBtn.addEventListener("click", formatCityName);
+document.addEventListener("click", loadCityClick);
