@@ -1,90 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
     <title>Weather Forecasts</title>
-</head>
-<body>
-    <div class="container-fluid ">
-    <header id="head" class="row">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <header id="head" class="row">
         <h1>Weather Dashboard</h1>
-    </header>
-    <section  id="inpSect">
+      </header>
+      <section id="inpSect">
         <div class="row">
-        <form id="formCont" class="col-lg-3" >
+          <form id="formCont" class="col-lg-3">
             <h2>Search for a City:</h2>
-            <input id="userInp" type="text" placeholder="City Name"/>
+            <input id="userInp" type="text" placeholder="City Name" />
             <button type="submit" id="userBtn">Search</button>
-        </form>
-        <div id="today" class="col-lg-9 border border-dark mt-2 border-2">
-            <h3>Today's Forecast:</h3>
+          </form>
+
+          <div id="today" class="col-lg-9 border border-dark mt-2 border-2">
+            <h2 id="cityName"></h2>
+            <span id="currentIcon"></span>
+            <p>Temp:<span id="currentTemp"></span></p>
+
+            <p>Humidity:<span id="currentHumid"></span></p>
+
+            <p>Wind:<span id="currentWind"></span></p>
+
+            <p>UV index:<span id="currentIndex"></span></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="fiveFore" class="d-flex">
+        <div
+          id="saveCity"
+          class="row col-lg-3 border-top border-dark border-3 p-3"
+        >
+          <ul>
             
+          </ul>
         </div>
-        </div>
-    </section>
 
-    <section id="fiveFore" class="row d-flex">
+        <div class="col-lg-9 mt-5 ms-5">
+          <h3>5-Day Forecast:</h3>
 
-        <div id="saveCity" class="col-lg-3  border-top border-dark border-3  p-3">
-            
-            <ul>
-                <li>Orlando</li>
-                <li>Kissimmee</li>
-                <li>Houston</li>
-                <li>New York</li>
-                <li>Tucson</li>
-                <li>Denver</li>
+          <div class="row" id="fiveCast">
+            <div class="future col-lg-2" id="day-1">
+              <h4 id="fdate0"></h4>
+              <p id="fimage0"></p>
+              <p>Temp:<span id="ftemp0"></span></p>
+              <p>Wind:<span id="fwind0"></span></p>
+              <p>Humidity:<span id="fhumid0"></span></p>
+            </div>
 
-            </ul>
+            <div class="future col-lg-2" id="day-2">
+              <h4 id="fdate1"></h4>
+              <p id="fimage1"></p>
+              <p>Temp:<span id="ftemp1"></span></p>
+              <p>Wind:<span id="fwind1"></span></p>
+              <p>Humidity:<span id="fhumid1"></span></p>
+            </div>
+
+            <div class="future col-lg-2" id="day-3">
+              <h4 id="fdate2"></h4>
+              <p id="fimage2"></p>
+              <p>Temp:<span id="ftemp2"></span></p>
+              <p>Wind:<span id="fwind2"></span></p>
+              <p>Humidity:<span id="fhumid2"></span></p>
+            </div>
+
+            <div class="future col-lg-2" id="day-4">
+              <h4 id="fdate3"></h4>
+              <p id="fimage3"></p>
+              <p>Temp:<span id="ftemp3"></span></p>
+              <p>Wind:<span id="fwind3"></span></p>
+              <p>Humidity:<span id="fhumid3"></span></p>
+            </div>
+
+            <div class="future col-lg-2" id="day-5">
+              <h4 id="fdate4"></h4>
+              <p id="fimage4"></p>
+              <p>Temp:<span id="ftemp4"></span></p>
+              <p>Wind:<span id="fwind4"></span></p>
+              <p>Humidity:<span id="fhumid4"></span></p>
+            </div>
+          </div>
         </div>
-        
-        <div class="col-lg-9 mt-5">
-        <h3>5-Day Forecast:</h3>
-        <div class="row" id="fiveCast">
-        <div class="future col-lg-2" id="1">
-            <h4>Date:</h4>
-            <a></a>
-            <p>Temp:</p>
-            <p>Wind:</p>
-            <p>Humidity:</p>
-        </div>
-        <div class="future col-lg-2" id="2">
-            <h4>Date:</h4>
-            <a></a>
-            <p>Temp:</p>
-            <p>Wind:</p>
-            <p>Humidity:</p>
-        </div>
-        <div class="future col-lg-2" id="3">
-            <h4>Date:</h4>
-            <a></a>
-            <p>Temp:</p>
-            <p>Wind:</p>
-            <p>Humidity:</p>
-        </div>
-        <div class="future col-lg-2" id="4">
-            <h4>Date:</h4>
-            <a></a>
-            <p>Temp:</p>
-            <p>Wind:</p>
-            <p>Humidity:</p>
-        </div>
-        <div class="future col-lg-2" id="5">
-            <h4>Date:</h4>
-            <a></a>
-            <p>Temp:</p>
-            <p>Wind:</p>
-            <p>Humidity:</p>
-        </div>
-        </div>
-        </div>
-    </section>
+      </section>
     </div>
     <script src="./assets/js/script.js"></script>
-</body>
+  </body>
 </html>
