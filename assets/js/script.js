@@ -5,6 +5,7 @@ const subBtn = document.querySelector("#userBtn");
 let userInput = document.querySelector("#userInp");
 let city = "";
 let cityArry = [];
+let clearHistory = document.querySelector("#clearHistory");
 //current day
 const todayTemp = document.querySelector("#currentTemp");
 const todayHumid = document.querySelector("#currentHumid");
@@ -19,6 +20,15 @@ const future = document.querySelectorAll(".future");
 const fiveDate = document.querySelectorAll(".dateF");
 console.log(future);
 
+var searchArray = function (city) {
+  for (var i = 0; i < cityArry.length; i++) {
+    if (city.toUpperCase() === cityArry[i]) {
+      return -1;
+    }
+  }
+  return 1;
+};
+
 var formatCityName = function (event) {
   event.preventDefault();
   if (userInput.value !== "") {
@@ -26,7 +36,6 @@ var formatCityName = function (event) {
     convertInputApi(city);
   } else {
     alert("Please Type in a City Name");
-    return;
   }
 };
 
@@ -106,15 +115,19 @@ var displayFuture = function (five) {
 };
 
 var saveCityName = function (city) {
-  city = city.toUpperCase();
+  cityArry = JSON.parse(localStorage.getItem("city"));
   if (cityArry == null) {
     cityArry = [];
+    cityArry.push(city.toUpperCase());
+    localStorage.setItem("city", JSON.stringify(cityArry));
+    appendToList(city.toUpperCase());
+  } else {
+    if (searchArray(city) > 0) {
+      cityArry.push(city.toUpperCase());
+      localStorage.setItem("city", JSON.stringify(cityArry));
+      appendToList(city.toUpperCase());
+    }
   }
-
-  appendToList(city);
-  cityArry.push(city);
-  localStorage.setItem("City", JSON.stringify(cityArry));
-  console.log(cityArry);
   userInput.value = "";
 };
 
@@ -128,6 +141,15 @@ var appendToList = function (city, listItem) {
 
 var loadCityName = function (listCity) {
   document.querySelector(".list-group").innerHTML = "";
+  cityArry = JSON.parse(localStorage.getItem("city"));
+  if (cityArry !== null) {
+    cityArry = JSON.parse(localStorage.getItem("city"));
+    for (i = 0; i < cityArry.length; i++) {
+      appendToList(cityArry[i]);
+    }
+    city = cityArry[i - 1];
+    convertInputApi(city);
+  }
 };
 
 var loadCityClick = function (event) {
@@ -144,3 +166,10 @@ var loadCityClick = function (event) {
 
 subBtn.addEventListener("click", formatCityName);
 document.addEventListener("click", loadCityClick);
+window.addEventListener("load", loadCityName);
+clearHistory.addEventListener("click", function (event) {
+  event.preventDefault();
+  cityArry = [];
+  localStorage.removeItem("city");
+  document.location.reload();
+});

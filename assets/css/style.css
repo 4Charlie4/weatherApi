@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: "sans-serif", "serif";
+    background-color: lightslategray;
 }
 
 
@@ -23,7 +24,7 @@ body {
 }
 
 .future {
-    background-color: rgb(0,90,135);
+    background-color: rgb(39, 126, 170);
     border: solid white;
 }
 
