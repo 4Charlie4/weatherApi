@@ -56,7 +56,7 @@ var getWeatherApi = function (lat, lon) {
 //grabs from API that will convert city names into long/lat for above
 var convertInputApi = function (city) {
   var convertApi =
-    "http://api.openweathermap.org/geo/1.0/direct?q=" +
+    "https://api.openweathermap.org/geo/1.0/direct?q=" +
     city +
     "&appid=a22fcda0659e95b539385ad289716ca4";
   fetch(convertApi).then((res) => {
@@ -87,7 +87,7 @@ var displayCurrent = function (current) {
 
   //need image to appear instead
   let currentIcon = `${currentWeather.weather[0].icon}`;
-  let iconUrl = `http://openweathermap.org/img/wn/${currentIcon}@2x.png`;
+  let iconUrl = `https://openweathermap.org/img/wn/${currentIcon}@2x.png`;
   todayIcon.innerHTML = "<img src=" + iconUrl + ">";
 };
 
@@ -100,7 +100,7 @@ var displayFuture = function (five) {
     let tempFive = five[i].temp.day;
     //Weather icon implementation
     let dailyIcon = `${five[i].weather[0].icon}`;
-    let dailyIconUrl = `http://openweathermap.org/img/wn/${dailyIcon}@2x.png`;
+    let dailyIconUrl = `https://openweathermap.org/img/wn/${dailyIcon}@2x.png`;
 
     //places temp, wind and humidity, in their respective places
     document.querySelector(`#ftemp${[i]}`).innerHTML = " " + tempFive;
